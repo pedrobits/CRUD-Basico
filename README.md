@@ -1,60 +1,120 @@
-# TemplateExpress
+# Aplicação Básica de CRUD - README
 
-TemplateExpress é um modelo básico para iniciar projetos usando o framework Express do Node.js. Ele fornece uma estrutura inicial simples para criar aplicativos web com facilidade.
+## Descrição
+Este projeto é uma aplicação básica de CRUD (Create, Read, Update, Delete) em Node.js, que gerencia uma lista de produtos. A aplicação permite listar todos os produtos, criar novos produtos e apagar produtos existentes.
 
-## Pré-requisitos
-
-Certifique-se de ter o seguinte instalado em seu ambiente de desenvolvimento:
-
-- Node.js
-- npm (gerenciador de pacotes do Node.js)
-
-## Instalação
-
-Siga estas etapas para instalar e configurar o TemplateExpress em sua máquina local:
-
-1. Clone este repositório em seu ambiente local usando o comando:
-
+## Instalação e Execução
+1. Certifique-se de ter o Node.js instalado em seu ambiente.
+2. Faça o clone deste repositório em sua máquina local.
+3. Navegue para a pasta raiz do projeto e instale as dependências utilizando o comando:
    ```
-   git clone https://github.com/pedrobits/TemplateExpress.git
+   npm install
    ```
-
-2. Navegue até o diretório do projeto:
-
+4. Inicie o servidor usando o comando:
    ```
-   cd TemplateExpress
+   npm start
    ```
+   O servidor estará rodando em `http://localhost:3000`.
 
-3. Instale as dependências do projeto usando o npm:
+## Endpoints
 
-   ```
-   npm install ou yarn (pra quem tem preferencia por Yarn)
-   ```
-
-## Uso
-
-Para iniciar o aplicativo, execute o seguinte comando no diretório do projeto:
-
+### Listar Produtos
 ```
-npm start
+GET /product
+```
+Este endpoint retorna uma lista com todos os produtos existentes no banco de dados.
+
+#### Resposta
+```
+Status: 200 OK
+```
+```json
+{
+  "erro": "não",
+  "Resultado": [
+    {
+      "name": "Nome do Produto 1",
+      "description": "Descrição do Produto 1",
+      "image_url": "URL da imagem do Produto 1",
+      "category": "Categoria do Produto 1"
+    },
+    {
+      "name": "Nome do Produto 2",
+      "description": "Descrição do Produto 2",
+      "image_url": "URL da imagem do Produto 2",
+      "category": "Categoria do Produto 2"
+    },
+    ...
+  ]
+}
 ```
 
-Isso iniciará o servidor e o aplicativo estará acessível no seguinte endereço:
-
+### Criar Produto
 ```
-http://localhost:3000
+POST /product/new
+```
+Este endpoint permite criar um novo produto no banco de dados. É necessário fornecer os seguintes campos no corpo da requisição:
+
+- `name`: Nome do produto (obrigatório).
+- `description`: Descrição do produto (obrigatório).
+- `image_url`: URL da imagem do produto (obrigatório).
+- `category`: Categoria do produto (obrigatório).
+
+#### Resposta
+```
+Status: 200 OK
+```
+```json
+{
+  "erro": "não",
+  "resultado": "Produto Incluído com sucesso.",
+  "Data": [
+    {
+      "name": "Nome do Produto 1",
+      "description": "Descrição do Produto 1",
+      "image_url": "URL da imagem do Produto 1",
+      "category": "Categoria do Produto 1"
+    },
+    {
+      "name": "Nome do Produto 2",
+      "description": "Descrição do Produto 2",
+      "image_url": "URL da imagem do Produto 2",
+      "category": "Categoria do Produto 2"
+    },
+    ...
+  ]
+}
 ```
 
-Você pode personalizar o aplicativo adicionando rotas, controladores e outros componentes de acordo com as necessidades do seu projeto. O arquivo `app.js` contém a configuração principal do aplicativo Express.
+### Apagar Produto
+```
+DELETE /product/delete
+```
+Este endpoint permite apagar um produto existente no banco de dados. É necessário fornecer o campo `name` no corpo da requisição com o nome do produto a ser apagado.
 
-## Contribuição
+#### Resposta
+```
+Status: 200 OK
+```
+```json
+{
+  "erro": "não",
+  "resultado": "Item apagado com sucesso."
+}
+```
+ou
+```
+Status: 500 Internal Server Error
+```
+```json
+{
+  "erro": "sim",
+  "resultado": "Não foi possível apagar este item. (Z.106)"
+}
+```
 
-Este projeto está liberado para pull request.
+## Autor
+PedroBits & Cia.
 
 ## Licença
-
-Este projeto está licenciado sob a licença [MIT](LICENSE). Sinta-se à vontade para usá-lo e modificá-lo de acordo com suas necessidades.
-
-## Contato
-
-Se você tiver alguma dúvida, sugestão ou feedback, entre em contato com [pedroksk2@gmail.com](mailto:pedroksk2@gmail.com). Ficaremos felizes em ajudar!
+Este projeto está licenciado sob a Licença MIT - consulte o arquivo [LICENSE](./LICENSE) para obter mais detalhes.
